@@ -247,6 +247,37 @@ chmod +x usr/local/bin/rpi-serial-console
 # fix eth0 interface name
 ln -s /dev/null /etc/systemd/network/99-default.link
 
+#----------------------------------------------------
+#Geopoppy
+ apt-get install -y dnsmasq hostapd 
+ wget --no-check-certificate -P /etc https://raw.githubusercontent.com/jancelin/rpi_wifi_direct/master/raspberry_pi3/dhcpcd.conf 
+ wget --no-check-certificate -P /etc/network/interfaces.d https://raw.githubusercontent.com/jancelin/rpi_wifi_direct/master/raspberry_pi3/wlan0 
+# service dhcpcd restart 
+# ifdown wlan0;  ifup wlan0 
+ wget --no-check-certificate -P /etc/hostapd https://raw.githubusercontent.com/jancelin/rpi_wifi_direct/master/raspberry_pi3/hostapd.conf 
+# /usr/sbin/hostapd /etc/hostapd/hostapd.conf 
+ mv /etc/default/hostapd /etc/default/hostapd.bak 
+ wget --no-check-certificate -P /etc/default https://raw.githubusercontent.com/jancelin/rpi_wifi_direct/master/raspberry_pi3/hostapd 
+ mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig 
+ wget --no-check-certificate -P /etc https://raw.githubusercontent.com/jancelin/rpi_wifi_direct/master/raspberry_pi3/dnsmasq.conf 
+ mv /etc/sysctl.conf /etc/sysctl.conf.bak 
+ wget --no-check-certificate -P /etc https://raw.githubusercontent.com/jancelin/rpi_wifi_direct/master/raspberry_pi3/sysctl.conf 
+ 
+wget --no-check-certificate -P /etc https://raw.githubusercontent.com/jancelin/rpi_wifi_direct/master/raspberry_pi3/iptables.ipv4.nat
+
+ wget --no-check-certificate -P /etc https://raw.githubusercontent.com/jancelin/rpi_wifi_direct/master/raspberry_pi3/rc.local 
+ chmod +x  /etc/rc.local 
+# service hostapd start 
+# service dnsmasq start
+
+wget --no-check-certificate -P /home/pirate https://raw.githubusercontent.com/jancelin/geo-poppy/master/docker-compose-arm32.yml
+mv /home/pirate/docker-compose-arm32.yml /home/pirate/docker-compose.yml
+wget --no-check-certificate -P /home/pirate https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/check_docker.sh 
+ chmod +x /home/pirate/check_docker.sh 
+ wget --no-check-certificate -P /etc/systemd/system https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/Cdocker.service 
+ systemctl enable Cdocker.service
+#---------------------------------------------------------
+
 # cleanup APT cache and lists
 apt-get clean
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
