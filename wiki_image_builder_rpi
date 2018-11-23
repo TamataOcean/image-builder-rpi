@@ -1,0 +1,62 @@
+# Config Tamata workshop for Raspberry Pi
+
+# Install NODEJS / NPM
+
+#### NodeJs ( Version = )  
+
+>     curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -  
+>     sudo apt install nodejs  
+
+#### NPM Package Install 'V.O.O1'
+
+If problem with proxy config
+
+>     npm config set registry http://registry.npmjs.org/ --global
+
+# MOSQUITTO Server & Client Install
+>     
+     sudo apt-get install mosquitto
+     wget http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key
+     sudo apt-key add mosquitto-repo.gpg.key
+     cd /etc/apt/sources.list.d/
+     sudo wget http://repo.mosquitto.org/debian/mosquitto-wheezy.list
+     sudo -i 
+     apt-get update 
+     apt-get install mosquitto 
+     apt-get install mosquitto-clients
+
+
+# Install Ntp
+>    sudo apt-get install ntp
+
+### Config
+>    sudo vi /etc/ntp.conf  
+
+Update file with : 
+
+>    server europe.pool.ntp.org  
+>    restrict 10.3.141.0 mask 255.255.0.0  
+>    broadcast 10.3.141.255  
+
+### Restart Service
+>    sudo service ntp restart  
+
+# Writing service script for Spiru
+## Into : /lib/systemd/system write a file ( TamataWorkshop_Spiru.service )
+
+     [Unit]
+      Description=TamataSpiru
+      After=multi-user.target
+
+      [Service]
+      Type=idle
+      ExecStart=/usr/bin/node /home/pirate/workshop/save_data_spiru.js
+
+      [Install]
+      WantedBy=multi-user.target
+
+## Declare service  
+      sudo systemctl enable TamataWorkshop_Spiru.service  
+
+## Start service  
+      sudo systemctl start TamataWorkshop_Spiru.service  
