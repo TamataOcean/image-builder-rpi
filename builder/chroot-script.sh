@@ -248,20 +248,21 @@ chmod +x usr/local/bin/rpi-serial-console
 ln -s /dev/null /etc/systemd/network/99-default.link
 
 #----------------------------------------------------
-#Geopoppy
+#TamataWorkShop
+
 ##wifi
 apt-get install -y dnsmasq hostapd 
-wget --no-check-certificate -P /etc https://raw.githubusercontent.com/jancelin/rpi_wifi_direct/master/raspberry_pi3/dhcpcd.conf 
-wget --no-check-certificate -P /etc/network/interfaces.d https://raw.githubusercontent.com/jancelin/rpi_wifi_direct/master/raspberry_pi3/wlan0 
-wget --no-check-certificate -P /etc/hostapd https://raw.githubusercontent.com/jancelin/rpi_wifi_direct/master/raspberry_pi3/hostapd.conf  
+wget --no-check-certificate -P /etc https://raw.githubusercontent.com/TamataOcean/rpi_wifi_direct/master/raspberry_pi3/dhcpcd.conf 
+wget --no-check-certificate -P /etc/network/interfaces.d https://raw.githubusercontent.com/TamataOcean/rpi_wifi_direct/master/raspberry_pi3/wlan0 
+wget --no-check-certificate -P /etc/hostapd https://raw.githubusercontent.com/TamataOcean/rpi_wifi_direct/master/raspberry_pi3/hostapd.conf  
 mv /etc/default/hostapd /etc/default/hostapd.bak 
-wget --no-check-certificate -P /etc/default https://raw.githubusercontent.com/jancelin/rpi_wifi_direct/master/raspberry_pi3/hostapd 
+wget --no-check-certificate -P /etc/default https://raw.githubusercontent.com/TamataOcean/rpi_wifi_direct/master/raspberry_pi3/hostapd 
 mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig 
-wget --no-check-certificate -P /etc https://raw.githubusercontent.com/jancelin/rpi_wifi_direct/master/raspberry_pi3/dnsmasq.conf 
+wget --no-check-certificate -P /etc https://raw.githubusercontent.com/TamataOcean/rpi_wifi_direct/master/raspberry_pi3/dnsmasq.conf 
 mv /etc/sysctl.conf /etc/sysctl.conf.bak 
-wget --no-check-certificate -P /etc https://raw.githubusercontent.com/jancelin/rpi_wifi_direct/master/raspberry_pi3/sysctl.conf 
-wget --no-check-certificate -P /etc https://raw.githubusercontent.com/jancelin/rpi_wifi_direct/master/raspberry_pi3/iptables.ipv4.nat
-wget --no-check-certificate -P /etc https://raw.githubusercontent.com/jancelin/rpi_wifi_direct/master/raspberry_pi3/rc.local 
+wget --no-check-certificate -P /etc https://raw.githubusercontent.com/TamataOcean/rpi_wifi_direct/master/raspberry_pi3/sysctl.conf 
+wget --no-check-certificate -P /etc https://raw.githubusercontent.com/TamataOcean/rpi_wifi_direct/master/raspberry_pi3/iptables.ipv4.nat
+wget --no-check-certificate -P /etc https://raw.githubusercontent.com/TamataOcean/rpi_wifi_direct/master/raspberry_pi3/rc.local 
 chmod +x  /etc/rc.local 
 
 ##get check_docker.sh

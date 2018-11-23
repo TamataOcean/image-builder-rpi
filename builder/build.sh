@@ -26,7 +26,7 @@ echo CIRCLE_TAG="${CIRCLE_TAG}"
 
 # name of the sd-image we gonna create
 HYPRIOT_IMAGE_VERSION=${VERSION:="dirty"}
-HYPRIOT_IMAGE_NAME="GeoPoppy-${HYPRIOT_IMAGE_VERSION}.img"
+HYPRIOT_IMAGE_NAME="TamataWorkShop-${HYPRIOT_IMAGE_VERSION}.img"
 export HYPRIOT_IMAGE_VERSION
 
 # create build directory for assembling our image filesystem
