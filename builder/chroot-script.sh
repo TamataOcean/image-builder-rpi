@@ -269,9 +269,10 @@ chmod +x  /etc/rc.local
 wget --no-check-certificate -P /home/pirate https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/check_docker.sh 
 wget --no-check-certificate -P /etc/systemd/system https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/Cdocker.service 
 
-#get docker-compose.yml
-wget --no-check-certificate -P /home/pirate https://raw.githubusercontent.com/jancelin/geo-poppy/master/docker-compose-flash.yml
+#get docker-compose.yml with Tamata Workshop Container
+wget --no-check-certificate -P /home/pirate https://github.com/TamataOcean/image-builder-rpi/blob/master/builder/docker-compose-flash.yml
 mv /home/pirate/docker-compose-flash.yml /home/pirate/docker-compose.yml
+
 
 #get postgresql backup sql
 wget --no-check-certificate -P /home/pirate https://raw.githubusercontent.com/jancelin/docker-postgis/master/setup-database.sh
@@ -279,13 +280,13 @@ wget --no-check-certificate -P /home/pirate https://github.com/jancelin/docker-p
 
 # import docker images
 mkdir /src && cd /src
-wget http://147.100.92.48:8099/portainer.tar.gz
-wget http://147.100.92.48:8099/postgres10-2.4-arm32_1.tar.gz
-wget http://147.100.92.48:8099/qgis-server2.14LTR-0.2.tar.gz
-wget http://147.100.92.48:8099/release_3_2_arm32_1.tar.gz
-wget http://147.100.92.48:8099/rpi-cloudcmd.tar.gz
-wget http://147.100.92.48:8099/rpi-redis.tar.gz
-wget http://147.100.92.48:8099/tracking_1_0.tar.gz
+# wget http://147.100.92.48:8099/portainer.tar.gz
+# wget http://147.100.92.48:8099/postgres10-2.4-arm32_1.tar.gz
+# wget http://147.100.92.48:8099/qgis-server2.14LTR-0.2.tar.gz
+# wget http://147.100.92.48:8099/release_3_2_arm32_1.tar.gz
+# wget http://147.100.92.48:8099/rpi-cloudcmd.tar.gz
+# wget http://147.100.92.48:8099/rpi-redis.tar.gz
+# wget http://147.100.92.48:8099/tracking_1_0.tar.gz
 
 # create startup script
 cat << EOF > /src/start.sh
